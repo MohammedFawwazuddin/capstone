@@ -38,7 +38,6 @@ public class CustomUserDetailsService implements UserDetailsService{
         var springSecurityUserEntity = User.withUsername(myUserEntity.getName())
                                             .password(
                                             myUserEntity.getPassword())
-                                            .roles(myUserEntity.getRole())
                                             .build();
         return springSecurityUserEntity;
     }
