@@ -111,25 +111,17 @@ public class ProjectController {
     //     }
     // }
 
-    @GetMapping("/location")
-    public ResponseEntity<String> getLocation() {
-        try {
-            String locationInfo = locationService.getLocationInfo();
-            return ResponseEntity.ok(locationInfo);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to fetch location information");
-        }
+    @PostMapping("/location/save")
+    public ResponseEntity<String> saveLocation(@RequestBody Location location) {
+        System.out.println(location.getLocation());
+        locationRepository.save(location);
+        return ResponseEntity.ok("Location saved successfully");
     }
 
-    @PostMapping("/location")
-    public ResponseEntity<String> saveLocation(@RequestBody Location location) {
-        try {
-            Location savedLocation = locationRepository.save(location);
-            return ResponseEntity.ok("Location saved successfully with ID: " + savedLocation.getId());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to save location: " + e.getMessage());
-        }
+    @GetMapping("/location/get")
+    public ResponseEntity<List<Location>> getAllLocations() {
+        List<Location> locations = locationRepository.findAll();
+        return ResponseEntity.ok(locations);
     }
 
     @GetMapping("/selection")
