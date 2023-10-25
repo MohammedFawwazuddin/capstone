@@ -114,6 +114,8 @@ public class ProjectController {
     @PostMapping("/location/save")
     public ResponseEntity<String> saveLocation(@RequestBody Location location) {
         System.out.println(location.getLocation());
+        System.out.println(location.getZipCode());
+        System.out.println(location.getState());
         locationRepository.save(location);
         return ResponseEntity.ok("Location saved successfully");
     }
