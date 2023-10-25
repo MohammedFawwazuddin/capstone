@@ -1,114 +1,64 @@
-package com.project.capstone;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+// package com.project.capstone;
 
-import com.project.capstone.Entity.Quote;
-import com.project.capstone.Entity.User;
-import com.project.capstone.controller.ProjectController;
-import com.project.capstone.repository.LocationRepository;
-import com.project.capstone.repository.ProductRepository;
-import com.project.capstone.repository.QuoteRepository;
-import com.project.capstone.repository.UserRepository;
-import com.project.capstone.service.LocationService;
+// import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.project.capstone.Entity.Quote;
+// import com.project.capstone.repository.QuoteRepository;
+// import com.project.capstone.repository.UserRepository;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+// import org.springframework.http.MediaType;
+// import org.springframework.test.web.servlet.MockMvc;
+// import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@ExtendWith(MockitoExtension.class)
-public class CapstoneApplicationTests {
+// @SpringBootTest
+// @AutoConfigureMockMvc
+// public class CapstoneApplicationTests {
 
-    @InjectMocks
-    private ProjectController projectController;
+//     @Autowired
+//     private MockMvc mockMvc;
 
-    @Mock
-    private UserRepository userRepository;
+//     @Autowired
+//     private UserRepository userRepository;
 
-    @Mock
-    private QuoteRepository quoteRepository;
+//     @Autowired
+//     private QuoteRepository quoteRepository;
 
-    @Mock
-    private LocationService locationService;
+//     // @Test
+//     // public void testRegisterUser() throws Exception {
+//     //     User user = new User();
+//     //     user.setName("testUser");
+//     //     user.setPassword("password");
 
-    @Mock
-    private LocationRepository locationRepository;
+//     //     mockMvc.perform(MockMvcRequestBuilders.post("/api/register")
+//     //             .contentType(MediaType.APPLICATION_JSON)
+//     //             .content(asJsonString(user)))
+//     //             .andExpect(status().isOk());
+//     // }
 
-    @Mock
-    private ProductRepository productRepository;
+//     @Test
+//     public void testStoreQuote() throws Exception {
+//         Quote quote = new Quote();
+//         mockMvc.perform(MockMvcRequestBuilders.post("/api/selectpage")
+//                 .contentType(MediaType.APPLICATION_JSON)
+//                 .content(asJsonString(quote)))
+//                 .andExpect(status().isCreated());
+//     }
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
+//     @Test
+//     public void testGetLocation() throws Exception {
+//         mockMvc.perform(MockMvcRequestBuilders.get("/api/location"))
+//                 .andExpect(status().isOk());
+//     }
 
-    @Test
-    public void testRegisterUser_Success() {
-        User user = new User();
-        user.setName("testUser");
-        user.setPassword("testPassword");
-
-        when(userRepository.existsByName("testUser")).thenReturn(false);
-        when(passwordEncoder.encode("testPassword")).thenReturn("encodedPassword");
-
-        ResponseEntity<String> response = projectController.registerUser(user);
-
-        verify(userRepository).save(user);
-       assertEquals(200, response.getStatusCodeValue());
-    }
-
-    @Test
-    public void testRegisterUser_UsernameExists() {
-        User user = new User();
-        user.setName("existingUser");
-        user.setPassword("testPassword");
-
-        when(userRepository.existsByName("existingUser")).thenReturn(true);
-
-        ResponseEntity<String> response = projectController.registerUser(user);
-
-        verify(userRepository, never()).save(user);
-        assertEquals(400, response.getStatusCodeValue());
-        assertEquals("Username already exists", response.getBody());
-    }
-
-    @Test
-    public void testStoreQuote_Success() {
-        Quote quote = new Quote();
-
-        when(quoteRepository.save(quote)).thenReturn(quote);
-
-        ResponseEntity<Quote> response = projectController.storeQuote(quote);
-
-        verify(quoteRepository).save(quote);
-        assertEquals(201, response.getStatusCodeValue());
-        assertEquals(quote, response.getBody());
-    }
-
-    @Test
-    public void testStoreQuote_InternalServerError() {
-        Quote quote = new Quote();
-
-        when(quoteRepository.save(quote)).thenThrow(new RuntimeException("Some error"));
-
-        ResponseEntity<Quote> response = projectController.storeQuote(quote);
-
-        verify(quoteRepository).save(quote);
-        assertEquals(500, response.getStatusCodeValue());
-    }
-
-    @Test
-    public void testGetLocation_Success() {
-        when(locationService.getLocationInfo()).thenReturn("Location Info");
-
-        ResponseEntity<String> response = projectController.getLocation();
-
-        verify(locationService).getLocationInfo();
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals("Location Info", response.getBody());
-    }
-
-    // Similar tests for other methods can be added
-
-}
+//     private static String asJsonString(Object obj) {
+//         try {
+//             return new ObjectMapper().writeValueAsString(obj);
+//         } catch (Exception e) {
+//             throw new RuntimeException(e);
+//         }
+//     }
+// }

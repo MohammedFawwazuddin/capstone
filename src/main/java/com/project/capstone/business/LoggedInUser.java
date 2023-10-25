@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class LoggedInUser {
-    private User loggedInUser;
+	private User loggedInUser;
 
 	public User getLoggedInUser() {
 		return loggedInUser;
@@ -16,4 +16,4 @@ public class LoggedInUser {
 		this.loggedInUser = loggedInUser;
 	}
 
-	}
+}

@@ -1,5 +1,7 @@
 package com.project.capstone.service;
 
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,11 @@ public class LocationService {
     private LocationRepository locationRepository;
 
     public String getLocationInfo() {
-        // Implement logic to fetch location information here, e.g., from a database or an external API.
-        // Return a location string or object.
         return "Location: SomeLocationInfo";
     }
 
     public Boolean saveLocation(LocationDTO locationDTO) {
-        try{
+        try {
             Location location = new Location();
             location.setLocation(locationDTO.getAddress());
             location.setSuite(locationDTO.getAptSuite());
@@ -30,9 +30,17 @@ public class LocationService {
             location.setZipCode(locationDTO.getZip());
             location.setCountry(locationDTO.getCountry());
             locationRepository.save(location);
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
+    }
+
+    public Optional<Location> findLocationById(long id) {
+        return locationRepository.findById(id);
+    }
+
+    public List<Location> findAllLocations() {
+        return locationRepository.findAll();
     }
 }

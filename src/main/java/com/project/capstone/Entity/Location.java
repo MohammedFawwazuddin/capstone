@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
 public class Location {
@@ -19,8 +17,6 @@ public class Location {
     private String state;
     private String zipCode;
     private String country;
-
-    // Constructors, getters, and setters
 
     public Location() {
     }

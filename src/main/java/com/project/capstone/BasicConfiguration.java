@@ -88,7 +88,7 @@ public class BasicConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/api/register", "/api/auth/token").permitAll()
+                        .requestMatchers("/api/register", "/api/auth/token", "/api/**").permitAll()
                         // .requestMatchers("/api/cycles/add").hasRole("ADMIN")
                         // .requestMatchers("").hasAuthority("SCOPE_ROLE_ADMIN")
                         .anyRequest().authenticated())

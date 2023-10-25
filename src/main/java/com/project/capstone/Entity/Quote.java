@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,6 +23,55 @@ public class Quote {
     private String quoteOwner;
     private String quoteId;
 
-    // Getters and setters
-}
+    
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public String getQuoteName() {
+        return quoteName;
+    }
+
+    public void setQuoteName(String quoteName) {
+        this.quoteName = quoteName;
+    }
+
+    public String getQuoteOwner() {
+        return quoteOwner;
+    }
+
+    public void setQuoteOwner(String quoteOwner) {
+        this.quoteOwner = quoteOwner;
+    }
+
+    public String getQuoteId() {
+        return quoteId;
+    }
+
+    public void setQuoteId(String quoteId) {
+        this.quoteId = quoteId;
+    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+}
