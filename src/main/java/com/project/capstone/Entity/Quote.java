@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
@@ -71,7 +72,12 @@ public class Quote {
     public void setQuoteId(String quoteId) {
         this.quoteId = quoteId;
     }
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "name")
     private User user;
+
+    // This annotation prevents JPA from trying to map this field to the database
+    private String userName; // Property to store the user's name
+
 }

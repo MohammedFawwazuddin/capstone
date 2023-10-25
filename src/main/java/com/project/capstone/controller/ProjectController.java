@@ -90,6 +90,7 @@ public class ProjectController {
             // Optional<User> loggedInUser = userRepository.findByName(username);
             // quote.setUser(loggedInUser.get());
             Quote savedQuote = quoteRepository.save(quote);
+            System.out.println(savedQuote);
             return new ResponseEntity<>(savedQuote, HttpStatus.CREATED);
          }catch (Exception e) {
              e.printStackTrace(); // Log the exception for debugging

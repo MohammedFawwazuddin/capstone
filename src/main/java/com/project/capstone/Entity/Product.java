@@ -72,6 +72,16 @@ public class Product {
 	}
 
 	private double price;
+
+	private String imageURL;
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+
 	@ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
