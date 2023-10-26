@@ -105,22 +105,22 @@ public class ProjectController {
         private ProductManagementService productService;
 
         @GetMapping
-        public List<Product> getAllProducts() {
-            return (List<Product>) productService.getProduct(null);
+        public Product getAllProducts() {
+            return  productService.getProduct(null);
         }
     }
     
     @GetMapping("/{productId}/details")
     public ResponseEntity<Product> getProductDetails(@PathVariable Long productId) {
-        return null;
-    }
+        return getProductDetails(productId);
+        }
 
     @GetMapping("/{productId}/features")
     public ResponseEntity<List<Product>> getProductFeatures(@PathVariable Long productId) {
-        return null;
+        return getProductFeatures(productId);
     }
 
     public List<Product> getAllProducts() {
-        return null;
+        return getAllProducts();
     }
 }

@@ -1,34 +1,28 @@
 package com.project.capstone.RepositoryTests;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.project.capstone.repository.UserRepository;
 import com.project.capstone.service.UserService;
+import com.project.capstone.repository.UserRepository;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.Mockito.when;
-
- class UserRepositoryTest {
+@ExtendWith(MockitoExtension.class)
+class UserRepositoryTest {
 
     @InjectMocks
-    private UserService userService; 
+    private UserService userService;
 
     @Mock
-    private UserRepository userRepository; 
+    private UserRepository userRepository;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
-       @Test
-     void testExistsByNameWhenUserDoesNotExist() {
-        when(userRepository.existsByName("nonExistingUser")).thenReturn(false);
-
-        boolean userExists = userService.checkIfUserExists("nonExistingUser");
+    @Test
+    void testExistsByNameWhenUserDoesNotExist() {
+        boolean userExists = userService.checkIfUserExists();
         assertFalse(userExists);
     }
 }

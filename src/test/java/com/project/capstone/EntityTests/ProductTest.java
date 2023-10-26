@@ -62,7 +62,7 @@ class ProductTest {
 
     @Test
     void testGetProductDetails() {
-        Object result = product.getProductDetails(1L);
+        Object result = product.getProductDetails();
 
         assertNull(result);
     }

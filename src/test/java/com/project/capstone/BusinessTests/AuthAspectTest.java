@@ -37,7 +37,7 @@ import com.project.capstone.entity.User;
     private NeedsAuth needsAuth;
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
       
         reset(loggedInUser, proceedingJoinPoint, needsAuth);
     }

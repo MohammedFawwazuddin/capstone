@@ -1,9 +1,10 @@
 package com.project.capstone.business;
 
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 public class LoginBody {
     private String username;
     private String password;

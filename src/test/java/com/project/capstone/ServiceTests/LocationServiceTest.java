@@ -33,7 +33,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-    public void testGetLocationInfo() {
+     void testGetLocationInfo() {
         String expectedLocationInfo = "Location: SomeLocationInfo";
         String locationInfo = locationService.getLocationInfo();
         assertEquals(expectedLocationInfo, locationInfo);

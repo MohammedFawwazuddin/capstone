@@ -2,9 +2,11 @@ package com.project.capstone.business;
 
 import com.project.capstone.entity.User;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class LoggedInUser {
 	private User loggedIn;
 
