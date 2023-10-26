@@ -1,42 +1,45 @@
 package com.project.capstone.BusinessTests;
 
 import com.project.capstone.business.LoginBody;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
-public class LoginBodyTest {
+class LoginBodyTest {
 
-    @InjectMocks
     private LoginBody loginBody;
 
-    @Test
-    public void testGetUsername() {
-        loginBody.setUsername("testUser");
-
-        assert loginBody.getUsername().equals("testUser");
+    @BeforeEach
+    void setUp() {
+        loginBody = new LoginBody();
     }
 
     @Test
-     void testGetPassword() {
-        loginBody.setPassword("password");
-
-        assert loginBody.getPassword().equals("password");
+    void testGetUsername() {
+        loginBody.setUsername("testuser");
+        assertEquals("testuser", loginBody.getUsername());
     }
 
     @Test
-     void testSetUsername() {
-        loginBody.setUsername("anotherUser");
+    void testSetUsername() {
+        loginBody.setUsername("testuser");
 
-        assert loginBody.getUsername().equals("anotherUser");
+        assertEquals("testuser", loginBody.getUsername());
     }
 
     @Test
-     void testSetPassword() {
-        loginBody.setPassword("12345");
-        assert loginBody.getPassword().equals("12345");
+    void testGetPassword() {
+        loginBody.setPassword("testpassword");
+
+        assertEquals("testpassword", loginBody.getPassword());
+    }
+
+    @Test
+    void testSetPassword() {
+        loginBody.setPassword("testpassword");
+
+        assertEquals("testpassword", loginBody.getPassword());
     }
 }
+
 

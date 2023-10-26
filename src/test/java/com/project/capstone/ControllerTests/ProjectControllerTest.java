@@ -25,7 +25,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProjectControllerTest {
+ class ProjectControllerTest {
 
     @InjectMocks
     private ProjectController projectController;
@@ -73,112 +73,89 @@ public class ProjectControllerTest {
     
 
     @Test
-    public void testRegisterUser_UserExists() {
+     void testRegisterUser_UserExists() {
         User user = new User();
         user.setName("TestUser");
         user.setPassword("TestPassword");
 
-        // Mock the UserRepository's existsByName method
         Mockito.when(userRepository.existsByName(user.getName())).thenReturn(true);
 
-        // Call the registerUser method
         ResponseEntity<String> response = projectController.registerUser(user);
 
-        // Verify the response and that UserRepository method was called
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Username already exists", response.getBody());
         Mockito.verify(userRepository).existsByName(user.getName());
     }
 
     @Test
-    public void testSelectAllQuotes() {
+     void testSelectAllQuotes() {
         List<Quote> quotes = new ArrayList<>();
-        // Add quotes to the list
 
-        // Mock the QuoteRepository's findAll method
         Mockito.when(quoteRepository.findAll()).thenReturn(quotes);
 
-        // Call the selectAllQuotes method
         ResponseEntity<List<Quote>> response = projectController.selectAllQuotes();
 
-        // Verify the response and that QuoteRepository method was called
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(quotes, response.getBody());
         Mockito.verify(quoteRepository).findAll();
     }
 
     @Test
-    public void testStoreQuote_Success() {
+     void testStoreQuote_Success() {
         Quote quote = new Quote();
 
-        // Mock the QuoteRepository's save method
         Mockito.when(quoteRepository.save(quote)).thenReturn(quote);
 
-        // Call the storeQuote method
         ResponseEntity<Quote> response = projectController.storeQuote(quote);
 
-        // Verify the response and that QuoteRepository method was called
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(quote, response.getBody());
         Mockito.verify(quoteRepository).save(quote);
     }
 
     @Test
-    public void testStoreQuote_Error() {
+     void testStoreQuote_Error() {
         Quote quote = new Quote();
 
-        // Mock the QuoteRepository's save method to throw an exception
         Mockito.when(quoteRepository.save(quote)).thenThrow(new RuntimeException("Test exception"));
 
-        // Call the storeQuote method
         ResponseEntity<Quote> response = projectController.storeQuote(quote);
 
-        // Verify the response and that QuoteRepository method was called
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         Mockito.verify(quoteRepository).save(quote);
     }
 
     @Test
-    public void testSaveLocation() {
+     void testSaveLocation() {
         Location location = new Location();
 
-        // Call the saveLocation method
         ResponseEntity<String> response = projectController.saveLocation(location);
 
-        // Verify the response
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Location saved successfully", response.getBody());
     }
 
     @Test
-    public void testGetAllLocations() {
+     void testGetAllLocations() {
         List<Location> locations = new ArrayList<>();
-        // Add locations to the list
-
-        // Mock the LocationRepository's findAll method
+     
         Mockito.when(locationRepository.findAll()).thenReturn(locations);
 
-        // Call the getAllLocations method
         ResponseEntity<List<Location>> response = projectController.getAllLocations();
 
-        // Verify the response and that LocationRepository method was called
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(locations, response.getBody());
         Mockito.verify(locationRepository).findAll();
     }
 
     @Test
-public void testProductSelection() {
+ void testProductSelection() {
     List<Product> products = new ArrayList<>();
-    // Add products to the list
-
-    // Mock the ProductRepository's findAll method
+  
     Mockito.when(productRepository.findAll()).thenReturn(products);
 
-    // Call the productSelection method
     List<Product> response = projectController.productSelection(null);
 
-    // Verify the response and that ProductRepository method was called
     assertEquals(products, response);
     Mockito.verify(productRepository).findAll();
 }
@@ -231,11 +208,9 @@ public void testProductSelection() {
     // }
 
     @Test
-    public void testCheckHealth() {
-        // Call the checkhealth method
+     void testCheckHealth() {
         String response = projectController.checkhealth();
 
-        // Verify the response
         assertEquals("healthy", response);
     }
 }

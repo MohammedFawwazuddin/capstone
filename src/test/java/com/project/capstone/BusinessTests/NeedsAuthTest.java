@@ -4,7 +4,7 @@ import com.project.capstone.business.NeedsAuth;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class NeedsAuthTest {
+ class NeedsAuthTest {
 
     @Test
      void testNeedsAuthAnnotation() {

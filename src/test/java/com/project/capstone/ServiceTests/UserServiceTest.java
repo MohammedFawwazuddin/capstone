@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
     @Mock
     private UserRepository userRepository;
 
+    @Mock
     private BCryptPasswordEncoder passwordEncoder;
 
     @Mock
@@ -32,23 +33,6 @@ import static org.mockito.Mockito.when;
         passwordEncoder = new BCryptPasswordEncoder();
         userService = new UserService(userRepository);
     }
-
-//     @Test
-//  void testAuthenticateValidUser() {
-//     User user = new User();
-//     user.setId(1L);
-//     user.setName("testuser");
-//     String plainPassword = "testpassword";
-//     String hashedPassword = "{bcrypt}" + passwordEncoder.encode(plainPassword);
-//     user.setPassword(hashedPassword);
-
-//     when(userRepository.findByName("testuser")).thenReturn(Optional.of(user));
-
-//     Optional<User> authenticatedUser = userService.authenticate("testuser", plainPassword);
-
-//     assertTrue(authenticatedUser.isPresent());
-//     assertEquals(user, authenticatedUser.get());
-// }
 
     @Test
      void testAuthenticateUserNotFound() {

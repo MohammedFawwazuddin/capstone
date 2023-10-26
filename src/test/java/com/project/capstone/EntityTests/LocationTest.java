@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.project.capstone.entity.Location;
 
-public class LocationTest {
+ class LocationTest {
 
     @Mock
     private Location location;
@@ -21,7 +21,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testLocationProperties() {
+     void testLocationProperties() {
         String loc = "123 Main St";
         String suite = "Suite 456";
         String city = "Sample City";
@@ -45,7 +45,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testId() {
+     void testId() {
         Long id = 1L;
 
         Mockito.when(location.getId()).thenReturn(id);

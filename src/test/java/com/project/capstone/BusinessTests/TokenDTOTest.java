@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.project.capstone.business.TokenDTO;
 
-public class TokenDTOTest {
+ class TokenDTOTest {
 
     @Test
-    public void testGettersAndSetters() {
+     void testGettersAndSetters() {
         TokenDTO tokenDTO = new TokenDTO();
 
         tokenDTO.setToken("TestToken");

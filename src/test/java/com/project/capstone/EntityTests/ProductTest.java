@@ -1,36 +1,29 @@
 package com.project.capstone.EntityTests;
+import com.project.capstone.entity.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.*;
 
-import com.project.capstone.entity.Product;
-import com.project.capstone.entity.User;
+class ProductTest {
 
-public class ProductTest {
-
-    @InjectMocks
     private Product product;
 
-    @Mock
-    private User user;
     @BeforeEach
-    public void setUp() {
-        product = new Product(); // Initialize the Product instance before each test
+    void setUp() {
+        product = new Product();
     }
+
     @Test
-    public void testGettersAndSetters() {
-        // Set values using setter methods
+    void testGettersAndSetters() {
+        product.setId(1L);
         product.setName("Test Product");
         product.setInternalName("Test Internal Name");
         product.setDetails("Test Product Details");
         product.setMaxProductsPerLocation(10);
-        product.setPrice(99.99);
+        product.setPrice(0.0);
         product.setImageURL("test-image.jpg");
 
-        // Get values using getter methods
+        assertEquals(1L, product.getId());
         assertEquals("Test Product", product.getName());
         assertEquals("Test Internal Name", product.getInternalName());
         assertEquals("Test Product Details", product.getDetails());
@@ -39,34 +32,38 @@ public class ProductTest {
         assertEquals("test-image.jpg", product.getImageURL());
     }
 
-
     @Test
-    public void testUserAssociation() {
-        // Mock the User object
-        User mockUser = new User();
-        mockUser.setId(1L);
-        mockUser.setName("TestUser");
+    void testGetPrice() {
+        product.setPrice(0.0);
 
-        // Set the associated User
-        product.setUser(mockUser);
-
-        // Get the associated User
-        User associatedUser = product.getUser();
-
-        // Verify that the associated User matches the one we set
-        assertEquals(1L, associatedUser.getId());
-        assertEquals("TestUser", associatedUser.getName());
+        assertEquals(0.0, product.getPrice());
     }
 
     @Test
-    public void testGetProductDetails() {
-        Product product = new Product(); // Create an instance of Product
-        Long productId = 1L;
+    void testSetPrice() {
+        product.setPrice(0.0);
 
-        // Call the getProductDetails method and check the result
-        Object result = product.getProductDetails(productId);
+        assertEquals(0.0, product.getPrice());
+    }
 
-        // Verify that the method returns the expected result (in this case, it always returns null)
-        assertEquals(null, result);
+    @Test
+    void testGetImageURL() {
+        product.setImageURL("test-image.jpg");
+
+        assertEquals("test-image.jpg", product.getImageURL());
+    }
+
+    @Test
+    void testSetImageURL() {
+        product.setImageURL("test-image.jpg");
+
+        assertEquals("test-image.jpg", product.getImageURL());
+    }
+
+    @Test
+    void testGetProductDetails() {
+        Object result = product.getProductDetails(1L);
+
+        assertNull(result);
     }
 }

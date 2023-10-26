@@ -6,13 +6,13 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CorsConfigTest {
+ class CorsConfigTest {
 
     @InjectMocks
     private CorsConfig corsConfig;
 
     @Test
-    public void testGetCorsConfiguration() {
+     void testGetCorsConfiguration() {
         MockitoAnnotations.openMocks(this);
 
         CorsConfiguration corsConfiguration = corsConfig.getCorsConfiguration(null);

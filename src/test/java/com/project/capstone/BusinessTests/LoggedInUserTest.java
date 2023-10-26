@@ -1,52 +1,35 @@
 package com.project.capstone.BusinessTests;
-
 import com.project.capstone.business.LoggedInUser;
 import com.project.capstone.entity.User;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
-@ExtendWith(MockitoExtension.class)
- class LoggedInUserTest {
+class LoggedInUserTest {
 
-    @InjectMocks
     private LoggedInUser loggedInUser;
 
-    @Mock
-    private User user;
-
-    @Test
-     void testGetLoggedInUser() {
-     
-        User mockUser = new User();
-        mockUser.setName("testUser");
-        mockUser.setPassword("password");
-
-       
-        loggedInUser.setLoggedInUser(mockUser);
-
-       
-        User result = loggedInUser.getLoggedInUser();
-        assert result.getName().equals("testUser");
-        assert result.getPassword().equals("password");
+    @BeforeEach
+    void setUp() {
+        loggedInUser = new LoggedInUser();
     }
 
     @Test
-     void testSetLoggedInUser() {
-      
-        User mockUser = new User();
-        mockUser.setName("anotherUser");
-        mockUser.setPassword("12345");
+    void testGetLoggedInUser() {
+        User user = mock(User.class);
 
-        
-        loggedInUser.setLoggedInUser(mockUser);
+        loggedInUser.setLoggedInUser(user);
 
-        
-        User result = loggedInUser.getLoggedInUser();
-        assert result.getName().equals("anotherUser");
-        assert result.getPassword().equals("12345");
+        assertEquals(user, loggedInUser.getLoggedInUser());
+    }
+
+    @Test
+    void testSetLoggedInUser() {
+        User user = mock(User.class);
+
+        loggedInUser.setLoggedInUser(user);
+
+        assertEquals(user, loggedInUser.getLoggedInUser());
     }
 }

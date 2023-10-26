@@ -9,7 +9,7 @@ import com.project.capstone.business.LocationDTO;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
-public class LocationDTOTest {
+ class LocationDTOTest {
 
     @InjectMocks
     private LocationDTO locationDTO;

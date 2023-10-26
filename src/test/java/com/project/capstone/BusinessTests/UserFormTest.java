@@ -1,19 +1,57 @@
 package com.project.capstone.BusinessTests;
-import org.junit.jupiter.api.Test;
 import com.project.capstone.business.UserForm;
-import static org.junit.jupiter.api.Assertions.assertEquals;
- class UserFormTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class UserFormTest {
+
+    private UserForm userForm;
+
+    @BeforeEach
+    void setUp() {
+        userForm = new UserForm();
+    }
 
     @Test
-     void testGettersAndSetters() {
-        UserForm userForm = new UserForm();
+    void testGetName() {
+        userForm.setName("testuser");
 
-        userForm.setName("TestUser");
-        userForm.setPassword("TestPassword");
-        userForm.setPasswordRepeat("TestPasswordRepeat");
+        assertEquals("testuser", userForm.getName());
+    }
 
-        assertEquals("TestUser", userForm.getName());
-        assertEquals("TestPassword", userForm.getPassword());
-        assertEquals("TestPasswordRepeat", userForm.getPasswordRepeat());
+    @Test
+    void testSetName() {
+        userForm.setName("testuser");
+
+        assertEquals("testuser", userForm.getName());
+    }
+
+    @Test
+    void testGetPassword() {
+        userForm.setPassword("testpassword");
+
+        assertEquals("testpassword", userForm.getPassword());
+    }
+
+    @Test
+    void testSetPassword() {
+        userForm.setPassword("testpassword");
+
+        assertEquals("testpassword", userForm.getPassword());
+    }
+
+    @Test
+    void testGetPasswordRepeat() {
+        userForm.setPasswordRepeat("testpassword");
+
+        assertEquals("testpassword", userForm.getPasswordRepeat());
+    }
+
+    @Test
+    void testSetPasswordRepeat() {
+        userForm.setPasswordRepeat("testpassword");
+
+        assertEquals("testpassword", userForm.getPasswordRepeat());
     }
 }

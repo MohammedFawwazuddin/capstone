@@ -15,7 +15,7 @@ import com.project.capstone.repository.ProductRepository;
 import com.project.capstone.service.ProductManagementService;
 
 @SpringBootTest
-public class ProductRepositoryTest {
+ class ProductRepositoryTest {
 
     @InjectMocks
     private ProductManagementService productService;
@@ -29,19 +29,15 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    public void testGetProductById() {
-        // Create a sample product
+     void testGetProductById() {
         Product sampleProduct = new Product();
         sampleProduct.setId(1L);
         sampleProduct.setName("Sample Product");
 
-        // Define the behavior of the mock repository
         when(productRepository.findById(1L)).thenReturn(java.util.Optional.of(sampleProduct));
 
-        // Perform the test
         Product result = productService.getProduct(1L);
 
-        // Assertions
         assertEquals(1L, result.getId());
         assertEquals("Sample Product", result.getName());
     }
