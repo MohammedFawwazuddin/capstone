@@ -1,19 +1,20 @@
 package com.project.capstone.BusinessTests;
 
-import com.project.capstone.business.TokenDTO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.project.capstone.business.TokenDTO;
+
 public class TokenDTOTest {
 
-    // @Test
-    // public void testTokenDTOGettersAndSetters() {
-    //     TokenDTO tokenDTO = new TokenDTO(null, null);
+    @Test
+    public void testGettersAndSetters() {
+        TokenDTO tokenDTO = new TokenDTO();
 
-    //     tokenDTO.setUsername("testUser");
-    //     tokenDTO.setToken("exampleToken");
+        tokenDTO.setToken("TestToken");
 
-    //     assertEquals("testUser", tokenDTO.getUsername());
-    //     assertEquals("exampleToken", tokenDTO.getToken());
-    // }
+        String token = tokenDTO.getToken();
+
+        assertEquals("TestToken", token);
+    }
 }

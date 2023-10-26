@@ -15,7 +15,7 @@ public class LocationDTOTest {
     private LocationDTO locationDTO;
 
     @Test
-    public void testGettersAndSetters() {
+     void testGettersAndSetters() {
 
         locationDTO.setAddress("123 Main St");
         locationDTO.setAptSuite("Apt 4B");
@@ -33,7 +33,7 @@ public class LocationDTOTest {
     }
 
     @Test
-    public void testSetAddress() {
+     void testSetAddress() {
 
         locationDTO.setAddress("456 Elm St");
 

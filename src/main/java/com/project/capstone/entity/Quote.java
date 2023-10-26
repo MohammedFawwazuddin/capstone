@@ -1,4 +1,4 @@
-package com.project.capstone.Entity;
+package com.project.capstone.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
@@ -76,8 +75,6 @@ public class Quote {
     @ManyToOne
     @JoinColumn(name = "name")
     private User user;
-
-    // This annotation prevents JPA from trying to map this field to the database
     private String userName; // Property to store the user's name
 
 }

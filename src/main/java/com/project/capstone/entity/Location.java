@@ -1,4 +1,4 @@
-package com.project.capstone.Entity;
+package com.project.capstone.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,15 +11,12 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String location;
+    private String loc;
     private String suite;
     private String city;
     private String state;
     private String zipCode;
     private String country;
-
-    public Location() {
-    }
 
     public Long getId() {
         return id;
@@ -30,11 +27,11 @@ public class Location {
     }
 
     public String getLocation() {
-        return location;
+        return loc;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocation(String loc) {
+        this.loc = loc;
     }
 
     public String getSuite() {

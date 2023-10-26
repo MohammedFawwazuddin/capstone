@@ -24,11 +24,11 @@ import static org.mockito.Mockito.when;
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
-    //    @Test
-    //  void testExistsByNameWhenUserDoesNotExist() {
-    //     when(userRepository.existsByName("nonExistingUser")).thenReturn(false);
+       @Test
+     void testExistsByNameWhenUserDoesNotExist() {
+        when(userRepository.existsByName("nonExistingUser")).thenReturn(false);
 
-    //     boolean userExists = userService.checkIfUserExists("nonExistingUser");
-    //     assertFalse(userExists);
-    // }
+        boolean userExists = userService.checkIfUserExists("nonExistingUser");
+        assertFalse(userExists);
+    }
 }

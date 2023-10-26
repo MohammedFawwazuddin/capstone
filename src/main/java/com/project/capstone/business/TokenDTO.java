@@ -10,7 +10,4 @@ public class TokenDTO {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	
-
 }

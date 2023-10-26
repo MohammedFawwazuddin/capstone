@@ -1,4 +1,4 @@
-package com.project.capstone.Entity;
+package com.project.capstone.entity;
 
 public @interface NotEmpty {
 

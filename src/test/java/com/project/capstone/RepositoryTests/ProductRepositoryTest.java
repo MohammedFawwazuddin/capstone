@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.project.capstone.Entity.Product;
+import com.project.capstone.entity.Product;
 import com.project.capstone.repository.ProductRepository;
 import com.project.capstone.service.ProductManagementService;
 

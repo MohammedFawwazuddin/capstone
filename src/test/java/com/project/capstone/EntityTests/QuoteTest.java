@@ -1,40 +1,41 @@
 package com.project.capstone.EntityTests;
 
-import com.project.capstone.Entity.Quote; // Import the Quote class you want to test
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.project.capstone.entity.Quote;
+import com.project.capstone.entity.User;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
  class QuoteTest {
 
-    private Quote quote;
-
-    @BeforeEach
-     void setUp() {
-        quote = new Quote();
-    }
-
     @Test
-     void testGetId() {
-        quote.setId(1L);
-        assertEquals(1L, quote.getId());
-    }
+     void testGettersAndSetters() {
+        Quote quote = new Quote();
 
-    @Test
-     void testSetId() {
-        quote.setId(2L);
-        assertEquals(2L, quote.getId());
-    }
-
-    @Test
-     void testGetCustomerName() {
         quote.setCustomerName("John Doe");
+        quote.setAccountStatus("Active");
+        quote.setQuoteName("Test Quote");
+        quote.setQuoteOwner("Owner");
+        quote.setQuoteId("12345");
+
         assertEquals("John Doe", quote.getCustomerName());
+        assertEquals("Active", quote.getAccountStatus());
+        assertEquals("Test Quote", quote.getQuoteName());
+        assertEquals("Owner", quote.getQuoteOwner());
+        assertEquals("12345", quote.getQuoteId());
     }
 
     @Test
-     void testSetCustomerName() {
-        quote.setCustomerName("Alice Smith");
-        assertEquals("Alice Smith", quote.getCustomerName());
+     void testUserAssociation() {
+        Quote quote = new Quote();
+        User user = new User();
+        user.setName("TestUser");
+
+        quote.setUser(user);
+
+        User associatedUser = quote.getUser();
+
+        assertEquals("TestUser", associatedUser.getName());
     }
 }

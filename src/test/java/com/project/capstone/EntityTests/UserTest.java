@@ -1,77 +1,62 @@
 package com.project.capstone.EntityTests;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import com.project.capstone.Entity.User;
+import com.project.capstone.entity.User;
+import com.project.capstone.repository.UserRepository;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-
-@ExtendWith(MockitoExtension.class)
- class UserTest {
+@SpringBootTest
+public class UserTest {
 
     @Mock
+    private UserRepository userRepository; // Assuming you have a UserRepository dependency
+
     private User user;
 
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this); // Initialize mocks
+
+        // Create a sample user
+        user = new User();
+        user.setId(1L);
+        user.setName("TestUser");
+        user.setPassword("TestPassword");
+    }
+
     @Test
-     void testGetId() {
-        when(user.getId()).thenReturn(1L);
+    public void testGettersAndSetters() {
+        // Test getter and setter methods
         assertEquals(1L, user.getId());
-    }
+        assertEquals("TestUser", user.getName());
+        assertEquals("TestPassword", user.getPassword());
 
-    @Test
-     void testGetName() {
-        when(user.getName()).thenReturn("testUser");
-        assertEquals("testUser", user.getName());
-    }
-
-    @Test
-     void testGetPassword() {
-        when(user.getPassword()).thenReturn("password123");
-        assertEquals("password123", user.getPassword());
-    }
-
-    @Test
-     void testSetId() {
-        when(user.getId()).thenReturn(0L);
-
-        doAnswer(invocation -> {
-            when(user.getId()).thenReturn(2L);
-            return null;
-        }).when(user).setId(2L);
-
+        // Modify the user object using setters and verify the changes
         user.setId(2L);
+        user.setName("UpdatedUser");
+        user.setPassword("UpdatedPassword");
 
         assertEquals(2L, user.getId());
+        assertEquals("UpdatedUser", user.getName());
+        assertEquals("UpdatedPassword", user.getPassword());
     }
-
-      @Test
-     void testSetName() {
-        when(user.getName()).thenReturn(null); 
-        doAnswer(invocation -> {
-            when(user.getName()).thenReturn("newUser"); 
-            return null;
-        }).when(user).setName("newUser");
-
-        user.setName("newUser");
-
-        assertEquals("newUser", user.getName());
-    }
-
 
     @Test
-     void testSetPassword() {
-        when(user.getPassword()).thenReturn(null);
-        doAnswer(invocation -> {
-            when(user.getPassword()).thenReturn("newPassword");
-            return null;
-        }).when(user).setPassword("newPassword");
+    public void testSaveUser() {
+        // Mock the UserRepository's save method
+        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
 
-        user.setPassword("newPassword");
-        assertEquals("newPassword", user.getPassword());
+        // Call the save method
+        User savedUser = userRepository.save(user);
+
+        // Verify that the save method was called and returned the expected user
+        Mockito.verify(userRepository).save(user);
+        assertEquals(user, savedUser);
     }
 }

@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.project.capstone.Entity.Location;
+import com.project.capstone.entity.Location;
 import com.project.capstone.repository.LocationRepository;
 import com.project.capstone.service.LocationService;
 

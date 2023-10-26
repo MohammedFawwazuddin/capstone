@@ -1,4 +1,4 @@
-package com.project.capstone.Exception;
+package com.project.capstone.exception;
 
 
 public class QuotationBusinessException extends RuntimeException {

@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import com.project.capstone.Entity.Quote;
+import com.project.capstone.entity.Quote;
 import com.project.capstone.repository.QuoteRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

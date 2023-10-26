@@ -1,11 +1,8 @@
 package com.project.capstone.service;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.capstone.Entity.Product;
+import com.project.capstone.entity.Product;
 import com.project.capstone.repository.ProductRepository;
 
 @Service

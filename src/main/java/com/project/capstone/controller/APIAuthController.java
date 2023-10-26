@@ -34,7 +34,6 @@ public class APIAuthController {
     public TokenDTO token(@RequestBody LoginBody loginBody) {
         Instant now = Instant.now();
         long expiry = 3600L;
-//        long expiry = 20L;
         var username = loginBody.getUsername();
         var password = loginBody.getPassword();
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

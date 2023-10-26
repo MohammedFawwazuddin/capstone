@@ -7,7 +7,7 @@ import lombok.Data;
 public class LoginBody {
     private String username;
     private String password;
-	public String getUsername(String string, String string2) {
+	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {

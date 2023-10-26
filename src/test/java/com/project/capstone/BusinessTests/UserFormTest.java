@@ -1,21 +1,19 @@
 package com.project.capstone.BusinessTests;
-
-import com.project.capstone.business.UserForm;
 import org.junit.jupiter.api.Test;
+import com.project.capstone.business.UserForm;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class UserFormTest {
+ class UserFormTest {
 
     @Test
-    public void testUserFormGettersAndSetters() {
+     void testGettersAndSetters() {
         UserForm userForm = new UserForm();
 
-        userForm.setName("testUser");
-        userForm.setPassword("password");
-        userForm.setPasswordRepeat("password");
+        userForm.setName("TestUser");
+        userForm.setPassword("TestPassword");
+        userForm.setPasswordRepeat("TestPasswordRepeat");
 
-        assertEquals("testUser", userForm.getName());
-        assertEquals("password", userForm.getPassword());
-        assertEquals("password", userForm.getPasswordRepeat());
+        assertEquals("TestUser", userForm.getName());
+        assertEquals("TestPassword", userForm.getPassword());
+        assertEquals("TestPasswordRepeat", userForm.getPasswordRepeat());
     }
 }

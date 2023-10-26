@@ -20,23 +20,22 @@ public class LoginBodyTest {
     }
 
     @Test
-    public void testGetPassword() {
+     void testGetPassword() {
         loginBody.setPassword("password");
 
         assert loginBody.getPassword().equals("password");
     }
 
     @Test
-    public void testSetUsername() {
+     void testSetUsername() {
         loginBody.setUsername("anotherUser");
 
         assert loginBody.getUsername().equals("anotherUser");
     }
 
     @Test
-    public void testSetPassword() {
+     void testSetPassword() {
         loginBody.setPassword("12345");
-
         assert loginBody.getPassword().equals("12345");
     }
 }

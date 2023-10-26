@@ -1,4 +1,4 @@
-package com.project.capstone.Entity;
+package com.project.capstone.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "products")
 public class Product {
@@ -63,6 +65,7 @@ public class Product {
 
 	private int maxProductsPerLocation;
 
+	public double price;
 	public double getPrice() {
 		return 0;
 	}
@@ -71,18 +74,16 @@ public class Product {
 		this.price = price;
 	}
 
-	private double price;
-
-	private String imageURL;
+	public String imageURL;
 	public String getImageURL() {
 		return imageURL;
-	}
-
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
 	}
 
 	@ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Object getProductDetails(Long productId) {
+        return null;
+    }
 }

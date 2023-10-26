@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.capstone.Entity.Location;
 import com.project.capstone.business.LocationDTO;
+import com.project.capstone.entity.Location;
 import com.project.capstone.repository.LocationRepository;
 
 @Service

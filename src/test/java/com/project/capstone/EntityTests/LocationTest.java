@@ -1,45 +1,55 @@
-
 package com.project.capstone.EntityTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
-import com.project.capstone.Entity.Location;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import com.project.capstone.entity.Location;
 
 public class LocationTest {
 
     @Mock
-    Location location; // Mock the Location class
+    private Location location;
 
-    @Test
-    public void testConstructor() {
-        location = new Location(); // Create an instance of Location
-
-        // You can add assertions here to verify the default state of the object
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGettersAndSetters() {
-        // Create a Location instance
-        Location location = new Location();
-        
-        // Set some values
-        location.setLocation("TestLocation");
-        location.setSuite("TestSuite");
-        location.setCity("TestCity");
-        location.setState("TestState");
-        location.setZipCode("TestZipCode");
-        location.setCountry("TestCountry");
+    public void testLocationProperties() {
+        String loc = "123 Main St";
+        String suite = "Suite 456";
+        String city = "Sample City";
+        String state = "CA";
+        String zipCode = "12345";
+        String country = "US";
 
-        // Use getters to retrieve values and assert them
-        assertEquals("TestLocation", location.getLocation());
-        assertEquals("TestSuite", location.getSuite());
-        assertEquals("TestCity", location.getCity());
-        assertEquals("TestState", location.getState());
-        assertEquals("TestZipCode", location.getZipCode());
-        assertEquals("TestCountry", location.getCountry());
+        Mockito.when(location.getLocation()).thenReturn(loc);
+        Mockito.when(location.getSuite()).thenReturn(suite);
+        Mockito.when(location.getCity()).thenReturn(city);
+        Mockito.when(location.getState()).thenReturn(state);
+        Mockito.when(location.getZipCode()).thenReturn(zipCode);
+        Mockito.when(location.getCountry()).thenReturn(country);
+
+        assertEquals(loc, location.getLocation());
+        assertEquals(suite, location.getSuite());
+        assertEquals(city, location.getCity());
+        assertEquals(state, location.getState());
+        assertEquals(zipCode, location.getZipCode());
+        assertEquals(country, location.getCountry());
+    }
+
+    @Test
+    public void testId() {
+        Long id = 1L;
+
+        Mockito.when(location.getId()).thenReturn(id);
+
+        assertEquals(id, location.getId());
     }
 }

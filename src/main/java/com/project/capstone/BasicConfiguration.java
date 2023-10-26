@@ -73,33 +73,33 @@ public class BasicConfiguration {
         auth.userDetailsService(userDetailsService);
     }
 
-    @Autowired
-    private CorsConfig corsConfig;
-
+   
     @Bean
     public UserDetailsService userDetailsService() {
         return userDetailsService;
     }
 
+     @Autowired
+    private CorsConfig corsConfig;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+        
         http
+        
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
-                .authorizeHttpRequests((requests) -> requests
+                .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/register", "/api/auth/token", "/api/**").permitAll()
-                        // .requestMatchers("/api/cycles/add").hasRole("ADMIN")
-                        // .requestMatchers("").hasAuthority("SCOPE_ROLE_ADMIN")
+                     
                         .anyRequest().authenticated())
                 .logout(withDefaults())
                 .httpBasic(withDefaults())
-                // .formLogin(withDefaults())
 
                 .oauth2ResourceServer(
                         oauth2ResourceServer -> oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())))
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
 

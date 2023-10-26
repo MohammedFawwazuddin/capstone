@@ -16,13 +16,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.project.capstone.Entity.User;
 import com.project.capstone.business.AuthAspect;
 import com.project.capstone.business.LoggedInUser;
 import com.project.capstone.business.NeedsAuth;
+import com.project.capstone.entity.User;
 
 @ExtendWith(MockitoExtension.class)
-public class AuthAspectTest {
+ class AuthAspectTest {
 
     @InjectMocks
     private AuthAspect authAspect;
@@ -43,7 +43,7 @@ public class AuthAspectTest {
     }
 
     @Test
-    public void testDemandLoginWithLoggedInUser() throws Throwable {
+     void testDemandLoginWithLoggedInUser() throws Throwable {
         User mockUser = mock(User.class);
         when(loggedInUser.getLoggedInUser()).thenReturn(mockUser);
 
@@ -54,7 +54,7 @@ public class AuthAspectTest {
     }
 
     @Test
-    public void testDemandLoginWithoutLoggedInUser() throws Throwable {
+     void testDemandLoginWithoutLoggedInUser() throws Throwable {
         when(loggedInUser.getLoggedInUser()).thenReturn(null);
 
         when(needsAuth.loginPage()).thenReturn("/login");

@@ -1,7 +1,7 @@
 package com.project.capstone.BusinessTests;
 
-import com.project.capstone.Entity.User;
 import com.project.capstone.business.LoggedInUser;
+import com.project.capstone.entity.User;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
-public class LoggedInUserTest {
+ class LoggedInUserTest {
 
     @InjectMocks
     private LoggedInUser loggedInUser;
@@ -19,7 +19,7 @@ public class LoggedInUserTest {
     private User user;
 
     @Test
-    public void testGetLoggedInUser() {
+     void testGetLoggedInUser() {
      
         User mockUser = new User();
         mockUser.setName("testUser");
@@ -35,7 +35,7 @@ public class LoggedInUserTest {
     }
 
     @Test
-    public void testSetLoggedInUser() {
+     void testSetLoggedInUser() {
       
         User mockUser = new User();
         mockUser.setName("anotherUser");
