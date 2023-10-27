@@ -154,7 +154,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
   
     Mockito.when(productRepository.findAll()).thenReturn(products);
 
-    List<Product> response = projectController.productSelection(null);
+    List<Product> response = projectController.productSelection();
 
     assertEquals(products, response);
     Mockito.verify(productRepository).findAll();

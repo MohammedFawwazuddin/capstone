@@ -69,7 +69,7 @@ public class Product {
 
 	public double price;
 	public double getPrice() {
-		return 0;
+		return price;
 	}
 
 	public void setPrice(double price) {

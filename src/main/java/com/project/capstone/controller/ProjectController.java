@@ -1,5 +1,6 @@
 package com.project.capstone.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,8 +110,17 @@ public class ProjectController {
 
     @GetMapping("/selection")
     @ResponseBody
-    public List<Product> productSelection(Model model) {
-       return productRepository.findAll();    }
+    public List<Product> productSelection() {
+        List<Product> products = productRepository.findAll();
+        products.stream().forEach(c->System.out.println(c.getPrice()));
+        
+        if(products!=null){
+            return products;
+        }
+        else{
+            return Collections.emptyList();
+        }    
+    }
 
     @RequestMapping("/products")
     public class ProductController {
