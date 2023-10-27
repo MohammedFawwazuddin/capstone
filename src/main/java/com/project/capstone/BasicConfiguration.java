@@ -21,7 +21,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -70,7 +70,7 @@ public class BasicConfiguration {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService).passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }
 
    
@@ -90,7 +90,7 @@ public class BasicConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/api/register", "/api/auth/token", "/api/**").permitAll()
+                        .requestMatchers("/api/register", "/api/auth/token","/api/**", "/swagger-ui/**","/api-docs/**").permitAll()
                      
                         .anyRequest().authenticated())
                 .logout(withDefaults())

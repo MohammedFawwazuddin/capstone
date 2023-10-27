@@ -83,6 +83,7 @@ public class Product {
 
 	@ManyToOne
     @JoinColumn(name = "user_id")
+    private User user;
 
     public Object getProductDetails() {
         return null;

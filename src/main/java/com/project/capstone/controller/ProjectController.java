@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.capstone.repository.UserRepository;
+import com.project.capstone.service.BillingService;
 import com.project.capstone.service.ProductManagementService;
+
+import com.project.capstone.entity.Billing;
 import com.project.capstone.entity.Location;
 import com.project.capstone.entity.Product;
 import com.project.capstone.entity.Quote;
 import com.project.capstone.entity.User;
+import com.project.capstone.repository.BillingRepository;
 import com.project.capstone.repository.LocationRepository;
 import com.project.capstone.repository.ProductRepository;
 import com.project.capstone.repository.QuoteRepository;
@@ -43,6 +47,14 @@ public class ProjectController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private BillingService billingService;
+
+    @Autowired
+    private BillingRepository billingRepository;
+
+    @Autowired
     @GetMapping("/health")
     public String checkhealth() {
         return "healthy";
@@ -72,6 +84,7 @@ public class ProjectController {
         return ResponseEntity.ok(quotes);
     }
     @PostMapping("/selectpage")
+
     public ResponseEntity<Quote> storeQuote(@RequestBody Quote quote) {
         try {
             Quote savedQuote = quoteRepository.save(quote);
@@ -105,6 +118,7 @@ public class ProjectController {
         private ProductManagementService productService;
 
         @GetMapping
+        
         public Product getAllProducts() {
             return  productService.getProduct(null);
         }
@@ -116,6 +130,7 @@ public class ProjectController {
         }
 
     @GetMapping("/{productId}/features")
+
     public ResponseEntity<List<Product>> getProductFeatures(@PathVariable Long productId) {
         return getProductFeatures(productId);
     }
@@ -123,4 +138,19 @@ public class ProjectController {
     public List<Product> getAllProducts() {
         return getAllProducts();
     }
+
+   
+ 
+        @PostMapping("/billing")
+        public ResponseEntity<?> saveBilling(@RequestBody Billing billingData) {
+            billingService.saveBillingData(billingData);
+            return ResponseEntity.ok("Billing data saved successfully");
+        }
+    @GetMapping("/billing")
+    public ResponseEntity<List<Billing>> getAllBillingData() {
+        List<Billing> billingData = billingService.getAllBillingData();
+        return ResponseEntity.ok(billingData);
+    }
+
+    
 }
