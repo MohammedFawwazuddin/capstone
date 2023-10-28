@@ -30,6 +30,10 @@ import static org.mockito.Mockito.when;
         when(loggedInUser.getLoggedInUser()).thenReturn(null/* Create a User object or mock it */);
 
        LoggedInUser sessionScopedBean = context.getBean(LoggedInUser.class);
+    }
 
+    @Test
+    public void testLoggedInUserBean() {
+        assertNotNull(loggedInUser);
     }
 }

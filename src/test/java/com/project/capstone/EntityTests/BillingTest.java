@@ -1,64 +1,53 @@
 package com.project.capstone.EntityTests;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
 import com.project.capstone.entity.Billing;
 import com.project.capstone.entity.User;
-import com.project.capstone.repository.BillingRepository;
 import com.project.capstone.repository.UserRepository;
-import com.project.capstone.service.BillingService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
-import java.util.Optional;
-
- class BillingTest {
+public class BillingTest {
 
     @Mock
     private UserRepository userRepository;
 
-    @Mock
-    private BillingService billingService;
-@Mock
-    private BillingRepository billingRepository;    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        billingService = new BillingService(billingRepository);
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-     void testGetTotalBillingAmount() {
-        // Arrange
+    public void testGettersAndSetters() {
+        Billing billing = new Billing();
+
+        // Set values using setters
+        billing.setId(1L);
+        billing.setProductName("Test Product");
+        billing.setProductDetails("Test Details");
+        billing.setPrice(100.0);
+        billing.setLocation("Test Location");
+
+        // Verify values using getters
+        assertEquals(1L, billing.getId());
+        assertEquals("Test Product", billing.getProductName());
+        assertEquals("Test Details", billing.getProductDetails());
+        assertEquals(100.0, billing.getPrice(), 0.001); // 0.001 is the tolerance for double comparisons
+        assertEquals("Test Location", billing.getLocation());
+    }
+
+    @Test
+    public void testUserAssociation() {
+        Billing billing = new Billing();
         User user = new User();
         user.setId(1L);
-        Billing billing1 = new Billing();
-        billing1.setPrice(10.0);
-        billing1.setUser(user);
-        Billing billing2 = new Billing();
-        billing2.setPrice(15.0);
-        billing2.setUser(user);
 
-        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+        billing.setUser(user);
 
-        // Act
-        double totalAmount = billingService.getTotalBillingAmount(1L);
-
-        // Assert
-        assertEquals(0.0, totalAmount, 0.01); // Add an appropriate delta
-    }
-
-    @Test
-     void testGetTotalBillingAmount_UserNotFound() {
-        // Arrange
-        Mockito.when(userRepository.findById(1L)).thenReturn(Optional.empty());
-
-        // Act
-        double totalAmount = billingService.getTotalBillingAmount(1L);
-
-        // Assert
-        assertEquals(0.0, totalAmount, 0.01); // Add an appropriate delta
+        assertEquals(user, billing.getUser());
     }
 }

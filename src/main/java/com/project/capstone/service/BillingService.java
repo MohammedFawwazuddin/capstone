@@ -28,4 +28,8 @@ public class BillingService {
     public double getTotalBillingAmount(long l) {
         return 0;
     }
+
+    public List<Billing> findByProductName(String productNameToFind) {
+        return null;
+    }
 }

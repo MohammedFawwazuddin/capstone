@@ -1,12 +1,18 @@
 package com.project.capstone.EntityTests;
 import com.project.capstone.entity.Product;
+import com.project.capstone.entity.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductTest {
 
     private Product product;
+    @Mock
+    private User user;
 
     @BeforeEach
     void setUp() {
@@ -65,5 +71,17 @@ class ProductTest {
         Object result = product.getProductDetails();
 
         assertNull(result);
+    }
+
+    @Test
+    public void testGetUser() {
+        assertEquals(user, product.getUser());
+    }
+
+    @Test
+    public void testSetUser() {
+        User newUser = new User(); // Create a new User instance
+        product.setUser(newUser); // Set the new User
+        assertEquals(newUser, product.getUser());
     }
 }
