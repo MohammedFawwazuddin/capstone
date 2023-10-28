@@ -112,4 +112,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
         assertFalse(result);
     }
+
+    @Test
+    void testGetProductFeatures() {
+        Object result = productManagementService.getProductFeatures();
+        assertNull(result);
+    }
 }

@@ -1,58 +1,32 @@
 package com.project.capstone;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.authentication.AuthenticationManager;
-
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
 import org.springframework.security.config.http.SessionCreationPolicy;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-
 import org.springframework.security.oauth2.jwt.JwtEncoder;
-
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
-
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
-
 import org.springframework.security.web.SecurityFilterChain;
-
 import static org.springframework.security.config.Customizer.withDefaults;
-
 import java.security.interfaces.RSAPrivateKey;
-
 import java.security.interfaces.RSAPublicKey;
-
 import com.project.capstone.service.CustomUserDetailsService;
 import com.nimbusds.jose.jwk.JWK;
-
 import com.nimbusds.jose.jwk.JWKSet;
-
 import com.nimbusds.jose.jwk.RSAKey;
-
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
-
 import com.nimbusds.jose.jwk.source.JWKSource;
-
 import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
@@ -66,32 +40,32 @@ public class BasicConfiguration {
     RSAPrivateKey priv;
 
     @Autowired
+    private CorsConfig corsConfig;
+
+    @Autowired
     private CustomUserDetailsService userDetailsService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }
 
-   
     @Bean
     public UserDetailsService userDetailsService() {
         return userDetailsService;
     }
 
-     @Autowired
-    private CorsConfig corsConfig;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        
         http
-        
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/api/register", "/api/auth/token","/api/**", "/swagger-ui/**","/api-docs/**").permitAll()
-                     
+                        .requestMatchers("/api/register", "/api/auth/token", "/api/**", "/swagger-ui/**",
+                                "/api-docs/**")
+                        .permitAll()
+
                         .anyRequest().authenticated())
                 .logout(withDefaults())
                 .httpBasic(withDefaults())
@@ -104,6 +78,7 @@ public class BasicConfiguration {
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
 
                 );
+
         return http.build();
     }
 

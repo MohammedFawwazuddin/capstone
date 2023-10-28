@@ -24,7 +24,6 @@ import com.project.capstone.entity.Location;
 import com.project.capstone.entity.Product;
 import com.project.capstone.entity.Quote;
 import com.project.capstone.entity.User;
-import com.project.capstone.repository.BillingRepository;
 import com.project.capstone.repository.LocationRepository;
 import com.project.capstone.repository.ProductRepository;
 import com.project.capstone.repository.QuoteRepository;
@@ -71,7 +70,6 @@ public class ProjectController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed: " + e.getMessage());
         }
-
     }
 
     @GetMapping("/selectpage")
@@ -108,7 +106,7 @@ public class ProjectController {
     @ResponseBody
     public List<Product> productSelection() {
         List<Product> products = productRepository.findAll();
-        products.stream().forEach(c -> System.out.println(c.getPrice()));
+        products.stream().forEach(c -> System.out.print(c.getPrice()));
 
         if (products != null && !products.isEmpty()) {
             return products;
@@ -145,7 +143,7 @@ public class ProjectController {
     }
 
     @PostMapping("/billing")
-    public ResponseEntity<?> saveBilling(@RequestBody Billing billingData) {
+    public ResponseEntity<String> saveBilling(@RequestBody Billing billingData) {
         billingService.saveBillingData(billingData);
         return ResponseEntity.ok("Billing data saved successfully");
     }

@@ -12,28 +12,28 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = SessionBeanConfig.class)
- class SessionBeanConfigTest {
+class SessionBeanConfigTest {
 
-    @Autowired
-    private ApplicationContext context;
+   @Autowired
+   private ApplicationContext context;
 
-    @MockBean
-    private LoggedInUser loggedInUser;
+   @MockBean
+   private LoggedInUser loggedInUser;
 
-    @Test
-     void testSessionScopedBeanCreation() {
-        assertNotNull(context.getBean(LoggedInUser.class));
-    }
+   @Test
+   void testSessionScopedBeanCreation() {
+      assertNotNull(context.getBean(LoggedInUser.class));
+   }
 
-    @Test
+   @Test
      void testSessionScopedBeanBehavior() {
-        when(loggedInUser.getLoggedInUser()).thenReturn(null/* Create a User object or mock it */);
+        when(loggedInUser.getLoggedInUser()).thenReturn(null);
 
        LoggedInUser sessionScopedBean = context.getBean(LoggedInUser.class);
     }
 
-    @Test
-    public void testLoggedInUserBean() {
-        assertNotNull(loggedInUser);
-    }
+   @Test
+   void testLoggedInUserBean() {
+      assertNotNull(loggedInUser);
+   }
 }

@@ -8,7 +8,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import com.project.capstone.entity.Billing;
-import com.project.capstone.entity.User;
 import com.project.capstone.repository.BillingRepository;
 import com.project.capstone.service.BillingService;
 
@@ -51,21 +50,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals(billingList, retrievedBillingList);
     }
 
-    // @Test
-    // public void testGetTotalBillingAmount() {
-    //     // Arrange
-    //     long userId = 1L;
-    //     List<Billing> billingList = Arrays.asList(
-    //         new Billing(),
-    //         new Billing()
-    //     );
+    @Test
+     void testGetTotalBillingAmount() {
+        double expectedTotal = 0.0; 
+        double actualTotal = billingService.getTotalBillingAmount();
 
-    //     Mockito.when(billingRepository.findById(userId)).thenReturn(billingList);
-
-    //     // Act
-    //     double totalAmount = billingService.getTotalBillingAmount(userId);
-
-    //     // Assert
-    //     assertEquals(30.0, totalAmount, 0.01); // Add an appropriate delta
-    // }
+        assertEquals(expectedTotal, actualTotal, 0.001); }
 }
