@@ -74,12 +74,12 @@ class ProductTest {
     }
 
     @Test
-    public void testGetUser() {
+     void testGetUser() {
         assertEquals(user, product.getUser());
     }
 
     @Test
-    public void testSetUser() {
+     void testSetUser() {
         User newUser = new User(); // Create a new User instance
         product.setUser(newUser); // Set the new User
         assertEquals(newUser, product.getUser());

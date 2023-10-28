@@ -54,37 +54,37 @@ import com.project.capstone.entity.Location;
     }
 
     @Test
-    public void testGetId() {
+     void testGetId() {
         assertEquals(0L, location.getId());
     }
 
     @Test
-    public void testGetLocation() {
+     void testGetLocation() {
         assertEquals(null, location.getLocation());
     }
 
     @Test
-    public void testGetSuite() {
+     void testGetSuite() {
         assertEquals(null, location.getSuite());
     }
 
     @Test
-    public void testGetCity() {
+     void testGetCity() {
         assertEquals(null, location.getCity());
     }
 
     @Test
-    public void testGetState() {
+     void testGetState() {
         assertEquals(null, location.getState());
     }
 
     @Test
-    public void testGetZipCode() {
+     void testGetZipCode() {
         assertEquals(null, location.getZipCode());
     }
 
     @Test
-    public void testGetCountry() {
+     void testGetCountry() {
         assertEquals(null, location.getCountry());
     }
 

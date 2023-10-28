@@ -41,4 +41,8 @@ public class ProductManagementService {
 		}
 		return false;
 	}
+
+    public Object getProductFeatures() {
+        return null;
+    }
 }

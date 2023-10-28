@@ -9,9 +9,8 @@ import com.project.capstone.entity.User;
 import com.project.capstone.repository.UserRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
-public class BillingTest {
+ class BillingTest {
 
     @Mock
     private UserRepository userRepository;
@@ -22,26 +21,24 @@ public class BillingTest {
     }
 
     @Test
-    public void testGettersAndSetters() {
+     void testGettersAndSetters() {
         Billing billing = new Billing();
 
-        // Set values using setters
         billing.setId(1L);
         billing.setProductName("Test Product");
         billing.setProductDetails("Test Details");
         billing.setPrice(100.0);
         billing.setLocation("Test Location");
 
-        // Verify values using getters
         assertEquals(1L, billing.getId());
         assertEquals("Test Product", billing.getProductName());
         assertEquals("Test Details", billing.getProductDetails());
-        assertEquals(100.0, billing.getPrice(), 0.001); // 0.001 is the tolerance for double comparisons
+        assertEquals(100.0, billing.getPrice(), 0.001); 
         assertEquals("Test Location", billing.getLocation());
     }
 
     @Test
-    public void testUserAssociation() {
+     void testUserAssociation() {
         Billing billing = new Billing();
         User user = new User();
         user.setId(1L);

@@ -1,4 +1,7 @@
-// package com.project.capstone.ControllerTests;
+// package com.project.capstone.ControllerTests;import com.project.capstone.business.LoginBody;
+// import com.project.capstone.business.TokenDTO;
+// import com.project.capstone.controller.APIAuthController;
+
 // import org.junit.jupiter.api.BeforeEach;
 // import org.junit.jupiter.api.Test;
 // import org.mockito.InjectMocks;
@@ -10,19 +13,13 @@
 // import org.springframework.security.core.Authentication;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.oauth2.jwt.Jwt;
-// import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 // import org.springframework.security.oauth2.jwt.JwtEncoder;
-// import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
-
-// import com.project.capstone.business.LoginBody;
-// import com.project.capstone.business.TokenDTO;
-// import com.project.capstone.controller.APIAuthController;
-
-// import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // import java.time.Instant;
-// import java.util.ArrayList;
+// import java.util.Collections;
 // import java.util.List;
+
+// import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // public class APIAuthControllerTest {
 
@@ -36,56 +33,29 @@
 //     private AuthenticationManager authenticationManager;
 
 //     @BeforeEach
-//     public void setUp() {
-//         MockitoAnnotations.initMocks(this);
+//     public void setup() {
+//         MockitoAnnotations.openMocks(this);
 //     }
 
 //     @Test
 //     public void testToken() {
-//         // Mocked input data
 //         LoginBody loginBody = new LoginBody();
-//         loginBody.setUsername("testUser");
-//         loginBody.setPassword("testPassword");
+//         loginBody.setUsername("testuser");
+//         loginBody.setPassword("testpassword");
 
-//         // Mocked authorities
-//         List<GrantedAuthority> authorities = new ArrayList<>();
-//         authorities.add(() -> "ROLE_USER"); // Mocked authority
+//         // Mock Authentication
+//         List<GrantedAuthority> authorities = Collections.singletonList(() -> "ROLE_USER");
+//         Authentication authentication = new UsernamePasswordAuthenticationToken("testuser", "testpassword", authorities);
+//         Mockito.when(authenticationManager.authenticate(Mockito.any())).thenReturn(authentication);
 
-//         // Mocked authentication result
-//         Authentication mockedAuthentication = new UsernamePasswordAuthenticationToken("testUser", "testPassword", authorities);
+//         // Mock Jwt
+//         Jwt mockedJwt = Jwt.withTokenValue("mocked-token-value").build();
+//         Mockito.when(jwtEncoder.encode(Mockito.any())).thenReturn(mockedJwt);
 
-//         // Mocked JWT claims
-//         JwtClaimsSet mockedClaims = JwtClaimsSet.builder()
-//             .issuer("self")
-//             .issuedAt(Instant.ofEpochSecond(0))
-//             .expiresAt(Instant.ofEpochSecond(3600))
-//             .subject("testUser")
-//             .claim("scope", "ROLE_USER")
-//             .build();
-
-//         // Mock behavior
-//         Mockito.when(authenticationManager.authenticate(Mockito.any(UsernamePasswordAuthenticationToken.class)))
-//             .thenReturn(mockedAuthentication);
-
-//         Mockito.when(jwtEncoder.encode(Mockito.any())).thenAnswer(invocation -> {
-//             JwtEncoderParameters parameters = invocation.getArgument(0);
-//             JwtClaimsSet claims = parameters.getClaims();
-//             return Jwt.withTokenValue("tokenValue")
-//                     .header("alg", "none")
-//                     .claim("iss", claims.getIssuer())
-//                     .claim("sub", claims.getSubject())
-//                     .claim("iat", claims.getIssuedAt().getEpochSecond())
-//                     .claim("exp", claims.getExpiresAt().getEpochSecond())
-//                     .claim("scope", claims.getClaimAsString("scope"))
-//                     .build();
-//         });
-
-//         // Call the controller method
+//         // Call the token method
 //         TokenDTO tokenDTO = apiAuthController.token(loginBody);
 
 //         // Assertions
-//         Mockito.verify(authenticationManager).authenticate(Mockito.any(UsernamePasswordAuthenticationToken.class));
-//         Mockito.verify(jwtEncoder).encode(Mockito.any());
-//         assertEquals("tokenValue", tokenDTO.getToken());
+//         assertEquals("mocked-token-value", tokenDTO.getToken());
 //     }
 // }

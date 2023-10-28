@@ -51,10 +51,6 @@ public class ProjectController {
     @Autowired
     private BillingService billingService;
 
-    @Autowired
-    private BillingRepository billingRepository;
-
-    @Autowired
     @GetMapping("/health")
     public String checkhealth() {
         return "healthy";
@@ -67,7 +63,7 @@ public class ProjectController {
             if (userRepository.existsByName(user.getName())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username already exists");
             }
-            
+
             user.setName(user.getName());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
@@ -78,23 +74,24 @@ public class ProjectController {
 
     }
 
-   @GetMapping("/selectpage")
+    @GetMapping("/selectpage")
     public ResponseEntity<List<Quote>> selectAllQuotes() {
         List<Quote> quotes = quoteRepository.findAll();
         return ResponseEntity.ok(quotes);
     }
+
     @PostMapping("/selectpage")
 
     public ResponseEntity<Quote> storeQuote(@RequestBody Quote quote) {
         try {
             Quote savedQuote = quoteRepository.save(quote);
             return new ResponseEntity<>(savedQuote, HttpStatus.CREATED);
-         }catch (Exception e) {
-             e.printStackTrace(); 
-             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @PostMapping("/location/save")
     public ResponseEntity<String> saveLocation(@RequestBody Location location) {
         locationRepository.save(location);
@@ -112,14 +109,13 @@ public class ProjectController {
     public List<Product> productSelection() {
         List<Product> products = productRepository.findAll();
         products.stream().forEach(c -> System.out.println(c.getPrice()));
-        
+
         if (products != null && !products.isEmpty()) {
             return products;
         } else {
             return Collections.emptyList();
-        }    
+        }
     }
-    
 
     @RequestMapping("/products")
     public class ProductController {
@@ -127,16 +123,16 @@ public class ProjectController {
         private ProductManagementService productService;
 
         @GetMapping
-        
+
         public Product getAllProducts() {
-            return  productService.getProduct(null);
+            return productService.getProduct(null);
         }
     }
-    
+
     @GetMapping("/{productId}/details")
     public ResponseEntity<Product> getProductDetails(@PathVariable Long productId) {
         return getProductDetails(productId);
-        }
+    }
 
     @GetMapping("/{productId}/features")
 
@@ -148,18 +144,16 @@ public class ProjectController {
         return getAllProducts();
     }
 
-   
- 
-        @PostMapping("/billing")
-        public ResponseEntity<?> saveBilling(@RequestBody Billing billingData) {
-            billingService.saveBillingData(billingData);
-            return ResponseEntity.ok("Billing data saved successfully");
-        }
+    @PostMapping("/billing")
+    public ResponseEntity<?> saveBilling(@RequestBody Billing billingData) {
+        billingService.saveBillingData(billingData);
+        return ResponseEntity.ok("Billing data saved successfully");
+    }
+
     @GetMapping("/billing")
     public ResponseEntity<List<Billing>> getAllBillingData() {
         List<Billing> billingData = billingService.getAllBillingData();
         return ResponseEntity.ok(billingData);
     }
 
-    
 }

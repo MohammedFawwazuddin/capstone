@@ -34,14 +34,14 @@ class LoggedInUserTest {
     }
 
     @Test
-    public void testGetLoggedIn() {
+     void testGetLoggedIn() {
         User user = new User();
         loggedInUser.setLoggedIn(user); 
         assertEquals(user, loggedInUser.getLoggedIn());
     }
 
     @Test
-    public void testSetLoggedIn() {
+     void testSetLoggedIn() {
         User user = new User(); 
         loggedInUser.setLoggedIn(user);
         assertEquals(user, loggedInUser.getLoggedIn());

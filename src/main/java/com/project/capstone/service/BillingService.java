@@ -25,11 +25,11 @@ public class BillingService {
         return billingRepository.findAll();
     }
 
-    public double getTotalBillingAmount(long l) {
+    public double getTotalBillingAmount() {
         return 0;
     }
 
-    public List<Billing> findByProductName(String productNameToFind) {
-        return null;
+    public List<Billing> findByProductName() {
+        return findByProductName();
     }
 }

@@ -2,15 +2,22 @@ package com.project.capstone.BusinessTests;
 
 import com.project.capstone.business.NeedsAuth;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import java.lang.reflect.Method;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
  class NeedsAuthTest {
 
+    @NeedsAuth(loginPage = "/custom-login")
+    public void annotatedMethod() {
+    }
+
     @Test
-     void testNeedsAuthAnnotation() {
-        NeedsAuth needsAuth = Mockito.mock(NeedsAuth.class);
-        Mockito.when(needsAuth.loginPage()).thenReturn("/customLoginPage");
-        assert needsAuth.loginPage().equals("/customLoginPage");
+     void testNeedsAuthAnnotation() throws NoSuchMethodException {
+        Method method = getClass().getMethod("annotatedMethod");
+
+        NeedsAuth needsAuth = method.getAnnotation(NeedsAuth.class);
+
+        assertEquals("/custom-login", needsAuth.loginPage());
     }
 }
 

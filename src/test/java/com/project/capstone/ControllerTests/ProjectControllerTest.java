@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.capstone.controller.ProjectController;
 import com.project.capstone.entity.Location;
@@ -41,6 +42,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     @Mock
     private ProductRepository productRepository;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @Mock
     private ProductManagementService productManagementService;
 
@@ -49,28 +53,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         MockitoAnnotations.openMocks(this);
     }
 
-    // @Test
-    // public void testRegisterUser_Success() {
-    //     User user = new User();
-    //     user.setName("TestUser");
-    //     user.setPassword("TestPassword");
-    
-    //     // Mock the UserRepository's existsByName method to return false (user does not exist)
-    //     Mockito.when(userRepository.existsByName(user.getName())).thenReturn(false);
-    
-    //     // Mock the UserRepository's save method to return the user
-    //     Mockito.when(userRepository.save(user)).thenReturn(user);
-    
-    //     // Call the registerUser method
-    //     ResponseEntity<String> response = projectController.registerUser(user);
-    
-    //     // Verify the response and that UserRepository methods were called
-    //     assertEquals(HttpStatus.OK, response.getStatusCode());
-    //     assertEquals("User registered successfully", response.getBody());
-    //     Mockito.verify(userRepository).existsByName(user.getName());
-    //     Mockito.verify(userRepository).save(user);
-    // }
-    
+    @Test
+     void testRegisterUser_Success() {
+        User user = new User();
+        user.setName("testuser");
+        user.setPassword("password");
+
+        Mockito.when(userRepository.existsByName("testuser")).thenReturn(false);
+        Mockito.when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
+        Mockito.when(userRepository.save(user)).thenReturn(user);
+
+        ResponseEntity<String> response = projectController.registerUser(user);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("User registered successfully", response.getBody());
+    }
 
     @Test
      void testRegisterUser_UserExists() {
@@ -85,6 +82,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Username already exists", response.getBody());
         Mockito.verify(userRepository).existsByName(user.getName());
+    }
+
+    @Test
+     void testRegisterUser_Failure() {
+        User user = new User();
+        user.setName("testuser");
+        user.setPassword("password");
+
+        Mockito.when(userRepository.existsByName("testuser")).thenReturn(false);
+        Mockito.when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
+        Mockito.when(userRepository.save(user)).thenThrow(new RuntimeException("Registration failed"));
+
+        ResponseEntity<String> response = projectController.registerUser(user);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Registration failed: Registration failed", response.getBody());
     }
 
     @Test
@@ -159,53 +172,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     assertEquals(products, response);
     Mockito.verify(productRepository).findAll();
 }
-
-// @Test
-// public void testGetAllProducts() {
-//     List<Product> products = new ArrayList<>();
-//     // Add products to the list
-
-//     // Mock the ProductManagementService's getProduct method
-//     Mockito.when(productManagementService.getProduct(null)).thenReturn(products);
-
-//     // Call the getAllProducts method
-//     List<Product> response = projectController.getAllProducts();
-
-//     // Verify the response and that ProductManagementService method was called
-//     assertEquals(products, response);
-//     Mockito.verify(productManagementService).getProduct(null);
-// }
-
-
-
-// @Test
-// public void testGetProductDetails() {
-//     Long productId = 1L;
-
-//     // Mock the behavior of the getProductDetails method
-//     Product product = new Product(); // Create a sample product
-//     Mockito.when(productManagementService.getProduct(productId)).thenReturn(product);
-
-//     // Call the getProductDetails method
-//     ResponseEntity<Product> response = projectController.getProductDetails(productId);
-
-//     // Verify the response
-//     assertEquals(HttpStatus.OK, response.getStatusCode());
-//     // Add more specific assertions for the response content if needed
-// }
-
-
-    // @Test
-    // public void testGetProductFeatures() {
-    //     Long productId = 1L;
-
-    //     // Call the getProductFeatures method
-    //     ResponseEntity<List<Product>> response = projectController.getProductFeatures(productId);
-
-    //     // Verify the response
-    //     assertEquals(HttpStatus.OK, response.getStatusCode());
-    //     // Add more specific assertions for the response content if needed
-    // }
 
     @Test
      void testCheckHealth() {
