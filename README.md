@@ -1,7 +1,5 @@
 # Software Requirements Specification (SRS)
 
-Certainly! Here's a more detailed table of contents for the Software Requirements Specification (SRS):
-
 ## Table of Contents
 
 1. **Introduction**
