@@ -1,5 +1,98 @@
 # Software Requirements Specification (SRS)
 
+Certainly! Here's a more detailed table of contents for the Software Requirements Specification (SRS):
+
+## Table of Contents
+
+1. **Introduction**
+   1.1. Purpose
+   1.2. Scope
+   1.3. Definitions, Acronyms, and Abbreviations
+   1.4. References
+   1.5. Overview of the Document
+
+2. **User Management**
+   2.1. User Authentication
+      2.1.1. Login
+      2.1.2. Signup
+
+3. **Select Page**
+   3.1. Functional Requirements
+      3.1.1. Customer Information
+      3.1.2. Account Status
+      3.1.3. Quote Information
+   3.2. Next Button Action
+
+4. **Location Page**
+   4.1. Functional Requirements
+      4.1.1. Display Saved Locations
+      4.1.2. Add New Location
+      4.1.3. Location Validation
+      4.1.4. Location Details
+   4.2. Next Button Action
+
+5. **Product Selection Page**
+   5.1. Functional Requirements
+      5.1.1. Display Products
+      5.1.2. Select Products
+   5.2. Next Button Action
+
+6. **Configuration Page**
+   6.1. Functional Requirements
+      6.1.1. Location Selection
+      6.1.2. Product Selection
+      6.1.3. Enable Product
+      6.1.4. Product Details
+      6.1.5. Parameter Entry
+   6.2. Data Persistence
+
+7. **Billing Page**
+   7.1. Functional Requirements
+      7.1.1. Display Billing Items
+      7.1.2. Calculate Cost
+
+8. **Technologies**
+   8.1. User Interface
+   8.2. Middleware
+   8.3. Backend
+   8.4. Server
+   8.5. Build Tool
+
+9. **System Architecture**
+   9.1. Application Layer
+   9.2. Business Logic Layer
+   9.3. Data Access Layer
+   9.4. Database
+
+10. **APIs and Integration**
+    10.1. Spring Boot REST APIs
+    10.2. Swagger API Documentation
+    10.3. Database Integration
+
+11. **Coding Practices**
+    11.1. Use of Java Concepts
+    11.2. Table Relationships
+
+12. **Non-Functional Requirements**
+    12.1. Performance
+    12.2. Security
+    12.3. Scalability
+    12.4. Usability
+
+13. **Conclusion**
+    13.1. Summary of Requirements
+    13.2. Future Enhancements
+
+14. **Appendices**
+    14.1. Glossary
+    14.2. Use Case Diagrams
+    14.3. Entity-Relationship Diagram
+    14.4. Test Cases
+
+15. **References**
+
+This comprehensive table of contents outlines the structure of the SRS, covering all the functional and non-functional requirements, system architecture, and additional information relevant to the project.
+
 ## 1. Introduction
 
 The Software Requirements Specification (SRS) document outlines the requirements for the development of a web-based application designed to manage and configure product quotes for both new and existing customers. The application encompasses various pages and functionalities, including user authentication, location management, product selection, and configuration. The project will use the following technologies:
