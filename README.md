@@ -2,94 +2,93 @@
 
 ## Table of Contents
 
-1. **Introduction**
-   1.1. Purpose
-   1.2. Scope
-   1.3. Definitions, Acronyms, and Abbreviations
-   1.4. References
-   1.5. Overview of the Document
+- [Introduction](#introduction)
+  - [Purpose](#purpose)
+  - [Scope](#scope)
+  - [Definitions, Acronyms, and Abbreviations](#definitions-acronyms-and-abbreviations)
+  - [References](#references)
+  - [Overview of the Document](#overview-of-the-document)
 
-2. **User Management**
-   2.1. User Authentication
-      2.1.1. Login
-      2.1.2. Signup
+- [User Management](#user-management)
+  - [User Authentication](#user-authentication)
+    - [Login](#login)
+    - [Signup](#signup)
 
-3. **Select Page**
-   3.1. Functional Requirements
-      3.1.1. Customer Information
-      3.1.2. Account Status
-      3.1.3. Quote Information
-   3.2. Next Button Action
+- [Select Page](#select-page)
+  - [Functional Requirements](#functional-requirements)
+    - [Customer Information](#customer-information)
+    - [Account Status](#account-status)
+    - [Quote Information](#quote-information)
+  - [Next Button Action](#next-button-action)
 
-4. **Location Page**
-   4.1. Functional Requirements
-      4.1.1. Display Saved Locations
-      4.1.2. Add New Location
-      4.1.3. Location Validation
-      4.1.4. Location Details
-   4.2. Next Button Action
+- [Location Page](#location-page)
+  - [Functional Requirements](#functional-requirements-1)
+    - [Display Saved Locations](#display-saved-locations)
+    - [Add New Location](#add-new-location)
+    - [Location Validation](#location-validation)
+    - [Location Details](#location-details)
+  - [Next Button Action](#next-button-action-1)
 
-5. **Product Selection Page**
-   5.1. Functional Requirements
-      5.1.1. Display Products
-      5.1.2. Select Products
-   5.2. Next Button Action
+- [Product Selection Page](#product-selection-page)
+  - [Functional Requirements](#functional-requirements-2)
+    - [Display Products](#display-products)
+    - [Select Products](#select-products)
+  - [Next Button Action](#next-button-action-2)
 
-6. **Configuration Page**
-   6.1. Functional Requirements
-      6.1.1. Location Selection
-      6.1.2. Product Selection
-      6.1.3. Enable Product
-      6.1.4. Product Details
-      6.1.5. Parameter Entry
-   6.2. Data Persistence
+- [Configuration Page](#configuration-page)
+  - [Functional Requirements](#functional-requirements-3)
+    - [Location Selection](#location-selection)
+    - [Product Selection](#product-selection-1)
+    - [Enable Product](#enable-product)
+    - [Product Details](#product-details)
+    - [Parameter Entry](#parameter-entry)
+  - [Data Persistence](#data-persistence)
 
-7. **Billing Page**
-   7.1. Functional Requirements
-      7.1.1. Display Billing Items
-      7.1.2. Calculate Cost
+- [Billing Page](#billing-page)
+  - [Functional Requirements](#functional-requirements-4)
+    - [Display Billing Items](#display-billing-items)
+    - [Calculate Cost](#calculate-cost)
 
-8. **Technologies**
-   8.1. User Interface
-   8.2. Middleware
-   8.3. Backend
-   8.4. Server
-   8.5. Build Tool
+- [Technologies](#technologies)
+  - [User Interface](#user-interface)
+  - [Middleware](#middleware)
+  - [Backend](#backend)
+  - [Server](#server)
+  - [Build Tool](#build-tool)
 
-9. **System Architecture**
-   9.1. Application Layer
-   9.2. Business Logic Layer
-   9.3. Data Access Layer
-   9.4. Database
+- [System Architecture](#system-architecture)
+  - [Application Layer](#application-layer)
+  - [Business Logic Layer](#business-logic-layer)
+  - [Data Access Layer](#data-access-layer)
+  - [Database](#database)
 
-10. **APIs and Integration**
-    10.1. Spring Boot REST APIs
-    10.2. Swagger API Documentation
-    10.3. Database Integration
+- [APIs and Integration](#apis-and-integration)
+  - [Spring Boot REST APIs](#spring-boot-rest-apis)
+  - [Swagger API Documentation](#swagger-api-documentation)
+  - [Database Integration](#database-integration)
 
-11. **Coding Practices**
-    11.1. Use of Java Concepts
-    11.2. Table Relationships
+- [Coding Practices](#coding-practices)
+  - [Use of Java Concepts](#use-of-java-concepts)
+  - [Table Relationships](#table-relationships)
 
-12. **Non-Functional Requirements**
-    12.1. Performance
-    12.2. Security
-    12.3. Scalability
-    12.4. Usability
+- [Non-Functional Requirements](#non-functional-requirements)
+  - [Performance](#performance)
+  - [Security](#security)
+  - [Scalability](#scalability)
+  - [Usability](#usability)
 
-13. **Conclusion**
-    13.1. Summary of Requirements
-    13.2. Future Enhancements
+- [Conclusion](#conclusion)
+  - [Summary of Requirements](#summary-of-requirements)
+  - [Future Enhancements](#future-enhancements)
 
-14. **Appendices**
-    14.1. Glossary
-    14.2. Use Case Diagrams
-    14.3. Entity-Relationship Diagram
-    14.4. Test Cases
+- [Appendices](#appendices)
+  - [Glossary](#glossary)
+  - [Use Case Diagrams](#use-case-diagrams)
+  - [Entity-Relationship Diagram](#entity-relationship-diagram)
+  - [Test Cases](#test-cases)
 
-15. **References**
+- [References](#references)
 
-This comprehensive table of contents outlines the structure of the SRS, covering all the functional and non-functional requirements, system architecture, and additional information relevant to the project.
 
 ## 1. Introduction
 
