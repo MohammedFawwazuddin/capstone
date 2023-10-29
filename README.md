@@ -3,12 +3,7 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-  - [Purpose](#purpose)
-  - [Scope](#scope)
-  - [Definitions, Acronyms, and Abbreviations](#definitions-acronyms-and-abbreviations)
-  - [References](#references)
-  - [Overview of the Document](#overview-of-the-document)
-
+ 
 - [User Management](#user-management)
   - [User Authentication](#user-authentication)
     - [Login](#login)
