@@ -80,8 +80,8 @@ class ProductTest {
 
     @Test
      void testSetUser() {
-        User newUser = new User(); // Create a new User instance
-        product.setUser(newUser); // Set the new User
+        User newUser = new User(); 
+        product.setUser(newUser);
         assertEquals(newUser, product.getUser());
     }
 }

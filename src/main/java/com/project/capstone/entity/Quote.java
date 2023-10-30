@@ -77,6 +77,6 @@ public class Quote {
     @ManyToOne
     @JoinColumn(name = "name")
     private User user;
-    private String userName; // Property to store the user's name
+    private String userName;
 
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -132,10 +134,20 @@ public class ProjectController {
         return getProductDetails(productId);
     }
 
-    @GetMapping("/{productId}/features")
+    public List<String> getProductFeatures(Long productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            return product.getFeatures();
+        }
+        return Collections.emptyList();
+    }
 
-    public ResponseEntity<List<Product>> getProductFeatures(@PathVariable Long productId) {
-        return getProductFeatures(productId);
+    public List<String> getProductParameters(Long productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            return product.getParameters();
+        }
+        return Collections.emptyList();
     }
 
     public List<Product> getAllProducts() {
@@ -144,6 +156,9 @@ public class ProjectController {
 
     @PostMapping("/billing")
     public ResponseEntity<String> saveBilling(@RequestBody Billing billingData) {
+        //  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // User user = userRepository.findByName(authentication.getName()).get();
+        // billingData.setUser(user);
         billingService.saveBillingData(billingData);
         return ResponseEntity.ok("Billing data saved successfully");
     }

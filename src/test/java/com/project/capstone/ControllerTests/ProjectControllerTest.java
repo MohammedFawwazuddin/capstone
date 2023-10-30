@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.capstone.controller.ProjectController;
+import com.project.capstone.entity.Billing;
 import com.project.capstone.entity.Location;
 import com.project.capstone.entity.Product;
 import com.project.capstone.entity.Quote;
@@ -19,9 +20,11 @@ import com.project.capstone.repository.LocationRepository;
 import com.project.capstone.repository.ProductRepository;
 import com.project.capstone.repository.QuoteRepository;
 import com.project.capstone.repository.UserRepository;
+import com.project.capstone.service.BillingService;
 import com.project.capstone.service.ProductManagementService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,6 +45,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     @Mock
     private ProductRepository productRepository;
+
+    @Mock
+    private BillingService billingService;
 
     @Mock
     private PasswordEncoder passwordEncoder;
@@ -179,4 +185,83 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         assertEquals("healthy", response);
     }
+
+   
+
+@Test
+void testGetProductFeatures() {
+    Long productId = 1L;
+    Product product = new Product();
+    List<String> features = new ArrayList<>();
+    features.add("Feature 1");
+    features.add("Feature 2");
+    product.setFeatures(features);
+
+    Mockito.when(productRepository.findById(productId)).thenReturn(java.util.Optional.of(product));
+
+    List<String> response = projectController.getProductFeatures(productId);
+
+    assertEquals(features, response);
+}
+
+@Test
+void testGetProductFeatures_ProductNotFound() {
+    Long productId = 1L;
+
+    Mockito.when(productRepository.findById(productId)).thenReturn(java.util.Optional.empty());
+
+    List<String> response = projectController.getProductFeatures(productId);
+
+    assertEquals(Collections.emptyList(), response);
+}
+
+@Test
+void testGetProductParameters() {
+    Long productId = 1L;
+    Product product = new Product();
+    List<String> parameters = new ArrayList<>();
+    parameters.add("Parameter 1");
+    parameters.add("Parameter 2");
+    product.setParameters(parameters);
+
+    Mockito.when(productRepository.findById(productId)).thenReturn(java.util.Optional.of(product));
+
+    List<String> response = projectController.getProductParameters(productId);
+
+    assertEquals(parameters, response);
+}
+
+@Test
+void testGetProductParameters_ProductNotFound() {
+    Long productId = 1L;
+
+    Mockito.when(productRepository.findById(productId)).thenReturn(java.util.Optional.empty());
+
+    List<String> response = projectController.getProductParameters(productId);
+
+    assertEquals(Collections.emptyList(), response);
+}
+
+@Test
+void testSaveBilling() {
+    Billing billingData = new Billing();
+
+    ResponseEntity<String> response = projectController.saveBilling(billingData);
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals("Billing data saved successfully", response.getBody());
+}
+
+@Test
+void testGetAllBillingData() {
+    List<Billing> billingData = new ArrayList<>();
+
+    Mockito.when(billingService.getAllBillingData()).thenReturn(billingData);
+
+    ResponseEntity<List<Billing>> response = projectController.getAllBillingData();
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(billingData, response.getBody());
+}
+
 }

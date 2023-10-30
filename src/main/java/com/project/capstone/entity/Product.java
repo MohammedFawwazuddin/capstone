@@ -1,5 +1,8 @@
 package com.project.capstone.entity;
 
+import java.util.List;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -81,6 +84,12 @@ public class Product {
 		return imageURL;
 	}
 
+
+    @ElementCollection
+    private List<String> features;
+	
+	@ElementCollection
+    private List<String> parameters;
 	@ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -88,4 +97,10 @@ public class Product {
     public Object getProductDetails() {
         return null;
     }
+
+	public void addFeature(String feature) {
+	}
+
+	public void addParameter(String parameter) {
+	}
 }

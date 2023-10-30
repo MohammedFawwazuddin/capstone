@@ -21,8 +21,6 @@ public class Billing {
     private Long id;
 
     private String productName;
-    private String productDetails;
-    private double price;
     private String location;
 
     @ManyToOne
