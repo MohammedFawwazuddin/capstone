@@ -9,7 +9,12 @@ spring:
     url: "jdbc:postgresql://localhost:5432/postgres"  
     username: fawwazuddin
     password: fawwaz@123
- 
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
 jwt:
   private.key: classpath:app.key
   public.key: classpath:app.pub	

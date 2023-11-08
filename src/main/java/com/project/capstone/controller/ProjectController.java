@@ -1,7 +1,9 @@
 package com.project.capstone.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,9 @@ import com.project.capstone.service.BillingService;
 import com.project.capstone.service.ProductManagementService;
 
 import com.project.capstone.entity.Billing;
+import com.project.capstone.entity.Feature;
 import com.project.capstone.entity.Location;
+import com.project.capstone.entity.Parameter;
 import com.project.capstone.entity.Product;
 import com.project.capstone.entity.Quote;
 import com.project.capstone.entity.User;
@@ -81,7 +85,6 @@ public class ProjectController {
     }
 
     @PostMapping("/selectpage")
-
     public ResponseEntity<Quote> storeQuote(@RequestBody Quote quote) {
         try {
             Quote savedQuote = quoteRepository.save(quote);
@@ -105,27 +108,12 @@ public class ProjectController {
     }
 
     @GetMapping("/selection")
-    @ResponseBody
-    public List<Product> productSelection() {
+    public ResponseEntity<List<Product>> productSelection() {
         List<Product> products = productRepository.findAll();
-        products.stream().forEach(c -> System.out.print(c.getPrice()));
-
-        if (products != null && !products.isEmpty()) {
-            return products;
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok().body(products);
         } else {
-            return Collections.emptyList();
-        }
-    }
-
-    @RequestMapping("/products")
-    public class ProductController {
-        @Autowired
-        private ProductManagementService productService;
-
-        @GetMapping
-
-        public Product getAllProducts() {
-            return productService.getProduct(null);
+            return ResponseEntity.ok().body(Collections.emptyList());
         }
     }
 
@@ -134,29 +122,38 @@ public class ProjectController {
         return getProductDetails(productId);
     }
 
-    public List<String> getProductFeatures(Long productId) {
-        Product product = productRepository.findById(productId).orElse(null);
-        if (product != null) {
+    @GetMapping("/products/{productId}/features")
+    public List<Feature> getProductFeatures(@PathVariable("productId") Long productId) {
+        Optional<Product> productOpt = productRepository.findById(productId);
+        System.out.println(productOpt.get());
+        productOpt.get().getFeatures().stream().forEach(feature -> System.out.println(feature.getName()+"bugga"));
+        if (productOpt.isPresent()) {
+            Product product = productOpt.get();
             return product.getFeatures();
+        } else {
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
     }
 
-    public List<String> getProductParameters(Long productId) {
-        Product product = productRepository.findById(productId).orElse(null);
-        if (product != null) {
-            return product.getParameters();
+    @GetMapping("/products/{productId}/parameters")
+    public List<Parameter> getProductParameters(@PathVariable("productId") Long productId) {
+        Optional<Product> productOpt = productRepository.findById(productId);
+        if (productOpt.isPresent()) {
+            Product product = productOpt.get();
+            return product.getFeatures().stream().map((a) -> a.getParameters().get(0)).toList();
+        } else {
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
     }
 
-    public List<Product> getAllProducts() {
-        return getAllProducts();
-    }
+    // public List<Product> getAllProducts() {
+    // return getAllProducts();
+    // }
 
     @PostMapping("/billing")
     public ResponseEntity<String> saveBilling(@RequestBody Billing billingData) {
-        //  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // Authentication authentication =
+        // SecurityContextHolder.getContext().getAuthentication();
         // User user = userRepository.findByName(authentication.getName()).get();
         // billingData.setUser(user);
         billingService.saveBillingData(billingData);

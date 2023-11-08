@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,26 +19,29 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "features")
+public class Feature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id;
+ 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "internal_name")
     private String internalName;
+ 
+    @Column(name = "details")
     private String details;
-    private int maxProductsPerLocation;
-    private double price;
-    private String imageURL;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+ 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Feature> features = new ArrayList<Feature>();
+    private List<Parameter> parameters;
+ 
+    public Feature() {
+        this.parameters = new ArrayList<>();
+    }
 
+   
 
     // Getters and setters
 }

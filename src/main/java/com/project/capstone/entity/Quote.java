@@ -77,6 +77,7 @@ public class Quote {
     @ManyToOne
     @JoinColumn(name = "name")
     private User user;
+    
     private String userName;
 
 }

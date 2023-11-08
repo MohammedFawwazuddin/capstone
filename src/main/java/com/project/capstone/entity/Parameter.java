@@ -1,43 +1,42 @@
 package com.project.capstone.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import org.hibernate.usertype.DynamicParameterizedType.ParameterType;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "parameters")
+public class Parameter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id;
+ 
+    @Column(name = "name")
     private String name;
+ 
+    @Column(name = "internal_name")
     private String internalName;
+ 
+    @Column(name = "details")
     private String details;
-    private int maxProductsPerLocation;
-    private double price;
-    private String imageURL;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Feature> features = new ArrayList<Feature>();
-
-
-    // Getters and setters
+ 
+    
+    @Column(name="values")
+    private String value;
 }

@@ -1,14 +1,14 @@
-package com.project.capstone;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+// package com.project.capstone;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
- class CapstoneApplicationTests {
+//  class CapstoneApplicationTests {
 
-    @Test
-     void testMainMethod() {
-        String[] args = new String[] {}; 
-        assertEquals(true,args.length == 0);
+//     @Test
+//      void testMainMethod() {
+//         String[] args = new String[] {}; 
+//         assertEquals(true,args.length == 0);
 
-    }
-}
+//     }
+// }

@@ -31,6 +31,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
 @EnableWebSecurity
+
 public class BasicConfiguration {
 
     @Value("${jwt.public.key}")
@@ -62,22 +63,17 @@ public class BasicConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfig))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/api/register", "/api/auth/token", "/api/**", "/swagger-ui/**",
+                        .requestMatchers("/api/register", "/api/auth/token", "/swagger-ui/**",
                                 "/api-docs/**")
                         .permitAll()
-
                         .anyRequest().authenticated())
-                .logout(withDefaults())
                 .httpBasic(withDefaults())
-
                 .oauth2ResourceServer(
                         oauth2ResourceServer -> oauth2ResourceServer.jwt(jwt -> jwt.decoder(jwtDecoder())))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
-
-                );
+                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
 
         return http.build();
     }
@@ -97,7 +93,8 @@ public class BasicConfiguration {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
-
         return authenticationConfiguration.getAuthenticationManager();
     }
+
+    
 }
