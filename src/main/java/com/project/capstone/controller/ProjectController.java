@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -151,14 +152,19 @@ public class ProjectController {
     // }
 
     @PostMapping("/billing")
-    public ResponseEntity<String> saveBilling(@RequestBody Billing billingData) {
-        // Authentication authentication =
-        // SecurityContextHolder.getContext().getAuthentication();
-        // User user = userRepository.findByName(authentication.getName()).get();
-        // billingData.setUser(user);
-        billingService.saveBillingData(billingData);
-        return ResponseEntity.ok("Billing data saved successfully");
-    }
+public ResponseEntity<String> saveBilling(
+    @RequestBody Billing billingData
+) {
+    // You can access the productName and location here and save them along with billingData
+    // billingData.setProductName(productName);
+    // billingData.setLocation(location);
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    User user = userRepository.findByName(authentication.getName()).get();
+    billingData.setUser(user);
+    billingService.saveBillingData(billingData);
+    return ResponseEntity.ok("Billing data saved successfully");
+}
+
 
     @GetMapping("/billing")
     public ResponseEntity<List<Billing>> getAllBillingData() {
